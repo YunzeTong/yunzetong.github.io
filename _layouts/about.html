@@ -16,6 +16,7 @@ layout: default
           <div class="profile float-{%- if page.profile.align == 'left' -%}left{%- else -%}right{%- endif -%}">
             {%- if page.profile.image %}
               {%- assign profile_image_path = page.profile.image | prepend: 'assets/img/' -%}
+              {%- assign profile_image_path_dark = page.profile.image_dark | default: page.profile.image | prepend: 'assets/img/' -%}
 
               {% if page.profile.image_circular %}
                 {%- assign profile_image_class = "img-fluid z-depth-1 rounded-circle" -%}
@@ -23,10 +24,10 @@ layout: default
                 {%- assign profile_image_class = "img-fluid z-depth-1 rounded" -%}
               {% endif %}
 
-              {% include figure.html 
-              path=profile_image_path 
-              class=profile_image_class
-              alt=page.profile.image -%}
+              <!-- Light mode image -->
+              <img class="{{ profile_image_class }} theme-image-light" src="{{ profile_image_path | relative_url }}" alt="{{ page.profile.image }}">
+              <!-- Dark mode image -->
+              <img class="{{ profile_image_class }} theme-image-dark" src="{{ profile_image_path_dark | relative_url }}" alt="{{ page.profile.image_dark | default: page.profile.image }}" style="display: none;">
             {% endif -%}
             {%- if page.profile.address %}
             <div class="address">
@@ -37,7 +38,22 @@ layout: default
           {%- endif %}
 
           <div class="clearfix">
-            {{ content }}
+            <!-- Light mode bio -->
+            <div class="bio-light">
+              {% if page.bio_light %}
+                {{ page.bio_light | markdownify }}
+              {% else %}
+                {{ content }}
+              {% endif %}
+            </div>
+            <!-- Dark mode bio -->
+            <div class="bio-dark" style="display: none;">
+              {% if page.bio_dark %}
+                {{ page.bio_dark | markdownify }}
+              {% else %}
+                {{ content }}
+              {% endif %}
+            </div>
           </div>
 
           <!-- News -->
@@ -50,6 +66,47 @@ layout: default
           {% if page.selected_papers -%}
             <h2><a href="{{ '/publications/' | relative_url }}" style="color: inherit;">selected publications</a></h2>
             {%- include selected_papers.html %}
+          {%- endif %}
+
+          <!-- Education -->
+          {% if page.education -%}
+            <h2>education</h2>
+            <div class="education">
+              {%- for edu in page.education %}
+              <div style="margin-bottom: 0.8rem;">
+                <strong>{{ edu.degree }}</strong>, {{ edu.institution }}<br>
+                <span style="color: gray; font-size: 0.9rem;">{{ edu.time }}</span>
+              </div>
+              {%- endfor %}
+            </div>
+          {%- endif %}
+
+          <!-- Experience -->
+          {% if page.experience -%}
+            <h2>experience</h2>
+            <div class="experience">
+              {%- for exp in page.experience %}
+              <div style="margin-bottom: 0.8rem;">
+                <strong>{{ exp.title }}</strong>, {{ exp.company }}<br>
+                <span style="color: gray; font-size: 0.9rem;">{{ exp.time }}</span>
+                {% if exp.description %}<br><span style="font-size: 0.9rem;">{{ exp.description }}</span>{% endif %}
+              </div>
+              {%- endfor %}
+            </div>
+          {%- endif %}
+
+          <!-- Experience -->
+          {% if page.honors -%}
+            <h2>selected honors</h2>
+            <div class="experience">
+              {%- for honor in page.honors %}
+              <div style="margin-bottom: 0.8rem;">
+                <strong>{{ honor.title }}</strong>, {{ honor.time }}<br>
+                <!-- <span style="color: gray; font-size: 0.9rem;">{{ honor.time }}</span> -->
+                {% if honor.description %}<br><span style="font-size: 0.9rem;">{{ honor.description }}</span>{% endif %}
+              </div>
+              {%- endfor %}
+            </div>
           {%- endif %}
 
           <!-- Social -->

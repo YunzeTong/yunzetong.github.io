@@ -724,3 +724,31 @@ progress {
      display: block;
      height: inherit;
  }
+
+ // Education & Experience sections
+  .education, .experience {
+    .edu-item, .exp-item {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 1.5rem;
+
+      .edu-logo, .exp-logo {
+        flex-shrink: 0;
+        margin-right: 1rem;
+
+        img {
+          border-radius: 8px;
+        }
+      }
+
+      .edu-content, .exp-content {
+        h4 {
+          margin: 0 0 0.3rem 0;
+        }
+        p {
+          margin: 0.2rem 0;
+          color: var(--global-text-color-light);
+        }
+      }
+    }
+  }
