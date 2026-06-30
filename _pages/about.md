@@ -18,10 +18,10 @@ profile:
 bio_light: |
   Hi, I’m Yunze Tong, a third-year PhD student at Zhejiang University in Professor [Fei Wu](https://scholar.google.com/citations?user=XJLn4MYAAAAJ&hl=en)'s group.
 
-  My current research focuses on flow matching and diffusion models, specifically across two directions:
+  My current research focuses on two directions:
 
-  1. Reinforcement Learning for Generative Models: Leveraging RL to enhance denoising performance by optimizing both the denoising trajectory and the initial noise distribution.
-  2. Guided Generation: Integrating auxiliary priors, external models, and agents to further refine and guide generative processes.
+  1. Video Generation and Editing: Primarily centered on Streaming Video Models, with a growing interest in world models.
+  2. Reinforcement Learning for Generative Models: Leveraging RL to enhance denoising performance by optimizing both the denoising trajectory and the initial noise distribution.
 
   In the earlier stages of my PhD, I also worked on model interpretability (specifically SHAP and its variants) and Out-of-Distribution (OOD) generalization, with a focus on covariate shift.
 
